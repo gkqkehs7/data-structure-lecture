@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
@@ -84,7 +84,32 @@ public:
 		}
 	}
 
+	int getHeight() {
+		int max_depth = 0;
+		for (int i = 0; i < node_list.size(); i++) {
+			if (getDepth(node_list[i]) > max_depth) {
+				max_depth = getDepth(node_list[i]);
+			}
+		}
 
+		return max_depth;
+	}
+
+	int getDepth(node* temp) {
+		if (temp == NULL) {
+			return -1;
+		}
+		else {
+			int depth = 0;
+
+			while (temp->parent != NULL) {
+				temp = temp->parent;
+				depth++;
+			}
+
+			return depth;
+		}
+	}
 
 };
 
@@ -109,7 +134,8 @@ int main() {
 		t.pre_order(t.root);
 		cout << "\n";
 		t.post_order(t.root);
-
+		cout << "\n";
+		cout << t.getHeight() << "\n";
 	}
 
 	return 0;
